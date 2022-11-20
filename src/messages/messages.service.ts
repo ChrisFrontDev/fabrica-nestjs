@@ -10,4 +10,8 @@ export class MessagesService {
   findAll() {
     return this.messages;
   }
+
+  findById(id: number) {
+    return this.messages.find((message) => id === message.id);
+  }
 }
