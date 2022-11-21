@@ -1,5 +1,5 @@
 import { MessagesService } from './messages.service';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Message } from './message';
 
 @Controller('messages')
@@ -20,5 +20,10 @@ export class MessagesController {
   create(@Body() body: Message) {
     console.log(body);
     return this.messagesService.create(body);
+  }
+  @Put(':id')
+  update(@Param() params, @Body() body: Message) {
+    console.log(body);
+    return this.messagesService.update(Number(params.id), body);
   }
 }
