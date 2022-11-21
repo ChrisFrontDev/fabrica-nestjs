@@ -1,5 +1,5 @@
+import { MessageDto } from './messageDto';
 import { Injectable } from '@nestjs/common';
-import { findIndex } from 'rxjs';
 import { Message } from './message';
 
 @Injectable()
@@ -21,8 +21,17 @@ export class MessagesService {
     return message;
   }
 
-  create(message: Message) {
-    return this.messages.push(message);
+  create(messageDto: MessageDto) {
+    const id = this.messages.length + 1;
+
+    const message: Message = {
+      id,
+      ...messageDto,
+    };
+
+    this.messages.push(message);
+
+    return message;
   }
 
   update(id: number, body: Message) {

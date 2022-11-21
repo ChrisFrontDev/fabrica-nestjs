@@ -1,3 +1,4 @@
+import { MessageDto } from './messageDto';
 import { MessagesService } from './messages.service';
 import {
   Body,
@@ -28,10 +29,10 @@ export class MessagesController {
   }
 
   @Post()
-  create(@Body() body: Message) {
-    console.log(body);
-    return this.messagesService.create(body);
+  create(@Body() messageDto: MessageDto) {
+    return this.messagesService.create(messageDto);
   }
+
   @Put(':id')
   update(@Param() params, @Body() body: Message) {
     console.log(body);
